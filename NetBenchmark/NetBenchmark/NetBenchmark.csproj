@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>henryfan</Authors>
+    <Company>beetlex.io</Company>
+    <Copyright>Copyright © beetlex.io 2019-2020 email:henryfan@msn.com</Copyright>
+    <Description>tcp http and websocket benchmark components</Description>
+    <PackageLicenseUrl>https://github.com/IKende/NetBenchmark/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/IKende/NetBenchmark</PackageProjectUrl>
+    <Version>0.6.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BeetleX.Http.Clients" Version="1.2.3" />
+  </ItemGroup>
+
+</Project>
