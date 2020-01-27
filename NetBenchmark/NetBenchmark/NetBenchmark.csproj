@@ -8,11 +8,11 @@
     <Description>tcp http and websocket benchmark components</Description>
     <PackageLicenseUrl>https://github.com/IKende/NetBenchmark/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/IKende/NetBenchmark</PackageProjectUrl>
-    <Version>0.6.0</Version>
+    <Version>0.6.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BeetleX.Http.Clients" Version="1.2.3" />
+    <PackageReference Include="BeetleX.Http.Clients" Version="1.2.4" />
   </ItemGroup>
 
 </Project>

@@ -95,52 +95,55 @@ namespace NetBenchmark
 
         public void Print()
         {
-            string value = "NetBenchmark";
-            Console.Clear();
-            Console.SetWindowPosition(0, 0);
-            Console.WriteLine("-".PadRight(WIDTH, '-'));
-            int span = WIDTH / 2 - value.Length / 2;
-            Console.WriteLine("".PadLeft(span) + value);
+            while (true)
+            {
+                string value = "NetBenchmark";
+                Console.Clear();
+                Console.SetWindowPosition(0, 0);
+                Console.WriteLine("-".PadRight(WIDTH, '-'));
+                int span = WIDTH / 2 - value.Length / 2;
+                Console.WriteLine("".PadLeft(span) + value);
 
-            value = "Copyright © beetlex.io 2019-2020 email:henryfan@msn.com";
-            span = WIDTH / 2 - value.Length / 2;
-            Console.WriteLine("".PadLeft(span) + value);
+                value = "Copyright © beetlex.io 2019-2020 email:henryfan@msn.com";
+                span = WIDTH / 2 - value.Length / 2;
+                Console.WriteLine("".PadLeft(span) + value);
 
 
-            value = Name;
-            span = 70 / 2 - value.Length / 2;
-            Console.WriteLine("".PadLeft(span) + value);
+                value = Name;
+                span = 70 / 2 - value.Length / 2;
+                Console.WriteLine("".PadLeft(span) + value);
 
-            value = $"{Stopwatch.Elapsed}";
-            span = WIDTH / 2 - value.Length / 2;
-            Console.WriteLine("".PadLeft(span) + value);
+                value = $"{Stopwatch.Elapsed}";
+                span = WIDTH / 2 - value.Length / 2;
+                Console.WriteLine("".PadLeft(span) + value);
 
-            Console.WriteLine("-".PadRight(WIDTH, '-'));
-            Console.Write("|");
-            value = $"Name|".PadLeft(18);
-            Console.Write(value);
+                Console.WriteLine("-".PadRight(WIDTH, '-'));
+                Console.Write("|");
+                value = $"Name|".PadLeft(18);
+                Console.Write(value);
 
-            value = $"Max|".PadLeft(10);
-            Console.Write(value);
+                value = $"Max|".PadLeft(10);
+                Console.Write(value);
 
-            value = $"Avg|".PadLeft(10);
-            Console.Write(value);
+                value = $"Avg|".PadLeft(10);
+                Console.Write(value);
 
-            value = $"Min|".PadLeft(10);
-            Console.Write(value);
+                value = $"Min|".PadLeft(10);
+                Console.Write(value);
 
-            value = $"RPS/Total|".PadLeft(26);
-            Console.Write(value);
-            Console.WriteLine("");
+                value = $"RPS/Total|".PadLeft(26);
+                Console.Write(value);
+                Console.WriteLine("");
 
-            Console.WriteLine("-".PadRight(WIDTH, '-'));
-            Success.Print();
-            Error.Print();
-            ReceiveBytes.Print(1024, "(KB)");
-            SendBytes.Print(1024, "(KB)");
-            Console.WriteLine("-".PadRight(WIDTH, '-'));
-            mTimesStatistics.Print();
-          
+                Console.WriteLine("-".PadRight(WIDTH, '-'));
+                Success.Print();
+                Error.Print();
+                ReceiveBytes.Print(1024, "(KB)");
+                SendBytes.Print(1024, "(KB)");
+                Console.WriteLine("-".PadRight(WIDTH, '-'));
+                mTimesStatistics.Print();
+                System.Threading.Thread.Sleep(1000);
+            }
 
         }
 
