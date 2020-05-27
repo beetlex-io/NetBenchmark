@@ -109,7 +109,7 @@ namespace NetBenchmark
 
         Task PostJson(string url, Dictionary<string, string> queryString, Dictionary<string, string> heaer, object data);
 
-        Task PostJson(string url,object data);
+        Task PostJson(string url, object data);
     }
 
 }

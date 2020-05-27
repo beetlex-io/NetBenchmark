@@ -44,7 +44,7 @@ namespace NetBenchmark
 
 
         public static Runner Websocket<Token>(Uri host, int connections, Func<WSClient, Token, Task> handler)
-             where Token : new()
+                where Token : new()
         {
             Runner runer = new Runner();
             runer.Name = $"Websockt [{host}] [connections:{connections:###,###,###}]";
@@ -59,7 +59,7 @@ namespace NetBenchmark
         }
 
         public static Runner WebsocketText<Token>(Uri host, int connections, Func<TextClient, Token, Task> handler)
-             where Token : new()
+                where Token : new()
         {
             Runner runer = new Runner();
             runer.Name = $"Websockt text [{host}] [connections:{connections:###,###,###}]";
@@ -74,7 +74,7 @@ namespace NetBenchmark
         }
 
         public static Runner WebsocketJson<Token>(Uri host, int connections, Func<JsonClient, Token, Task> handler)
-             where Token : new()
+                where Token : new()
         {
             Runner runer = new Runner();
             runer.Name = $"Websockt json [{host}] [connections:{connections:###,###,###}]";

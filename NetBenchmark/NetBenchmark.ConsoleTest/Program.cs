@@ -32,19 +32,16 @@ namespace NetBenchmark.ConsoleTest
     {
         static void Main(string[] args)
         {
-            var data = StringPacket.RamdomString(512);
-            var runer = Benchmark.Tcp<StringPacket, Program>("192.168.2.19", 9090, 200,
-                async (tcp, token) =>
+            var runer = Benchmark.WebsocketJson<Program>(new Uri("ws://192.168.2.19:8080"), 100,
+                async (ws, token) =>
                 {
-                    tcp.Send(data);
-                    await tcp.Receive();
-                }
-            );
+                    ws.TimeOut = 1000 * 5;
+                    ws.Send(new { url = "/json" });
+                    var result = await ws.Receive();
+                });
             runer.Run();
             runer.Print();
         }
-
-
     }
 
     public class StringPacket : BeetleX.Packets.FixeHeaderClientPacket
