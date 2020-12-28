@@ -46,7 +46,7 @@ namespace NetBenchmark
             Items.Add(item);
         }
 
-        public void Print()
+        public void Print(StringBuilder sb)
         {
             foreach (var item in Items)
             {
@@ -57,18 +57,18 @@ namespace NetBenchmark
                     p = 0;
                 var pe = (double)p / 100;
                 int pcount = (int)(pe / 5);
-                Console.Write('|');
+                sb.Append('|');
                 string value = $"{item.DisplayName} ".PadLeft(19);
-                Console.Write(value);
-                Console.Write($"{item.Count:###,###,##0}  ".PadLeft(20));
-                Console.Write("[");
+                sb.Append(value);
+                sb.Append($"{item.Count:###,###,##0}  ".PadLeft(20));
+                sb.Append("[");
                 value = "".PadLeft(pcount, '=');
                 value = value.PadRight(20, ' ');
-                Console.Write(value);
-                Console.Write("]");
-                Console.Write($"{pe}%|".PadLeft(13));
-              
-                Console.WriteLine("");
+                sb.Append(value);
+                sb.Append("]");
+                sb.Append($"{pe}%|".PadLeft(13));
+
+                sb.AppendLine("");
 
             }
         }

@@ -67,24 +67,24 @@ namespace NetBenchmark
             mLastTime = BeetleX.TimeWatch.GetTotalSeconds();
         }
 
-        public void Print(int baseValue = 1, string unit = "")
+        public void Print(StringBuilder sb, int baseValue = 1, string unit = "")
         {
-            Console.Write("|");
+            sb.Append("|");
             var value = $"{Name}|".PadLeft(18);
-            Console.Write(value);
+            sb.Append(value);
 
             value = $"{Max / baseValue:###,###,##0}|".PadLeft(10);
-            Console.Write(value);
+            sb.Append(value);
 
             value = $"{Avg / baseValue:###,###,##0}|".PadLeft(10);
-            Console.Write(value);
+            sb.Append(value);
 
             value = $"{Min / baseValue:###,###,##0}|".PadLeft(10);
-            Console.Write(value);
+            sb.Append(value);
 
             value = $"{mRps / baseValue:###,###,##0}/{mValue / baseValue:###,###,##0}{unit}|".PadLeft(26);
-            Console.Write(value);
-            Console.WriteLine("");
+            sb.Append(value);
+            sb.AppendLine("");
 
         }
     }

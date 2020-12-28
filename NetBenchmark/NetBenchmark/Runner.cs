@@ -95,53 +95,58 @@ namespace NetBenchmark
 
         public void Print()
         {
+            StringBuilder sb = new StringBuilder();
             while (true)
             {
+                sb.Clear();
                 string value = "NetBenchmark";
-                Console.Clear();
-                Console.SetWindowPosition(0, 0);
-                Console.WriteLine("-".PadRight(WIDTH, '-'));
+                Console.CursorTop = 0;
+                Console.CursorLeft = 0;
+
+                sb.AppendLine("-".PadRight(WIDTH, '-'));
                 int span = WIDTH / 2 - value.Length / 2;
-                Console.WriteLine("".PadLeft(span) + value);
+                sb.AppendLine("".PadLeft(span) + value);
 
                 value = "Copyright © beetlex.io 2019-2020 email:henryfan@msn.com";
                 span = WIDTH / 2 - value.Length / 2;
-                Console.WriteLine("".PadLeft(span) + value);
+                sb.AppendLine("".PadLeft(span) + value);
 
 
                 value = Name;
                 span = 70 / 2 - value.Length / 2;
-                Console.WriteLine("".PadLeft(span) + value);
+                sb.AppendLine("".PadLeft(span) + value);
 
                 value = $"{Stopwatch.Elapsed}";
                 span = WIDTH / 2 - value.Length / 2;
-                Console.WriteLine("".PadLeft(span) + value);
+                sb.AppendLine("".PadLeft(span) + value);
 
-                Console.WriteLine("-".PadRight(WIDTH, '-'));
-                Console.Write("|");
+                sb.AppendLine("-".PadRight(WIDTH, '-'));
+                sb.Append("|");
                 value = $"Name|".PadLeft(18);
-                Console.Write(value);
+                sb.Append(value);
 
                 value = $"Max|".PadLeft(10);
-                Console.Write(value);
+                sb.Append(value);
 
                 value = $"Avg|".PadLeft(10);
-                Console.Write(value);
+                sb.Append(value);
 
                 value = $"Min|".PadLeft(10);
-                Console.Write(value);
+                sb.Append(value);
 
                 value = $"RPS/Total|".PadLeft(26);
-                Console.Write(value);
-                Console.WriteLine("");
+                sb.Append(value);
+                sb.AppendLine("");
 
-                Console.WriteLine("-".PadRight(WIDTH, '-'));
-                Success.Print();
-                Error.Print();
-                ReceiveBytes.Print(1024, "(KB)");
-                SendBytes.Print(1024, "(KB)");
-                Console.WriteLine("-".PadRight(WIDTH, '-'));
-                mTimesStatistics.Print();
+                sb.AppendLine("-".PadRight(WIDTH, '-'));
+                Success.Print(sb);
+                Error.Print(sb);
+                ReceiveBytes.Print(sb, 1024, "(KB)");
+                SendBytes.Print(sb, 1024, "(KB)");
+                sb.AppendLine("-".PadRight(WIDTH, '-'));
+                mTimesStatistics.Print(sb);
+                sb.AppendLine("-".PadRight(WIDTH, '-'));
+                Console.WriteLine(sb);
                 System.Threading.Thread.Sleep(1000);
             }
 
@@ -178,7 +183,7 @@ namespace NetBenchmark
             ReceiveBytes.Add(e.BytesTransferred);
         }
 
-        public void SendCompleted(IClient client, SocketAsyncEventArgs e)
+        public void SendCompleted(IClient client, SocketAsyncEventArgs e, bool end)
         {
             SendBytes.Add(e.BytesTransferred);
         }

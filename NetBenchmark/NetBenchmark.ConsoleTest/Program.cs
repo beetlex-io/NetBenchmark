@@ -32,12 +32,18 @@ namespace NetBenchmark.ConsoleTest
     {
         static void Main(string[] args)
         {
-            var runer = Benchmark.WebsocketJson<Program>(new Uri("ws://192.168.2.19:8080"), 100,
-                async (ws, token) =>
+            //var runer = Benchmark.WebsocketText<Program>(new Uri("ws://192.168.2.19:80"), 100,
+            //    async (ws, token) =>
+            //    {
+            //        ws.TimeOut = 1000 * 5;
+            //        ws.Send("henryfan");
+            //        var result = await ws.Receive();
+            //    });
+            //runer.Run();
+            var runer = Benchmark.Http<Program>(new Uri("http://192.168.2.19:8089"), 100,
+                async (http, token) =>
                 {
-                    ws.TimeOut = 1000 * 5;
-                    ws.Send(new { url = "/json" });
-                    var result = await ws.Receive();
+                    await http.Get("/orders?count=10");
                 });
             runer.Run();
             runer.Print();
