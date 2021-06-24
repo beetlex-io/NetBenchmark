@@ -25,11 +25,29 @@ namespace NetBenchmark
 
         public async Task Execute()
         {
-            Client.Connect();
+            await Client.Connect();
             Client.Client.SocketProcessHandler = Runner;
             await Handler(Client, Tag);
         }
     }
+
+    public class TestWSClient : WSClient
+    {
+        public TestWSClient(Uri uri) : base(uri) { }
+
+        public override byte[] GetFrameDataBuffer(int length)
+        {
+            return base.GetFrameDataBuffer(length);
+        }
+
+        public override void FreeFrameDataBuffer(byte[] data)
+        {
+            base.FreeFrameDataBuffer(data);
+        }
+
+        
+    }
+
 
 
     public class WebSocketTextTester<Token> : ITester
@@ -52,11 +70,13 @@ namespace NetBenchmark
 
         public async Task Execute()
         {
-            Client.Connect();
+            await Client.Connect();
             Client.Client.SocketProcessHandler = Runner;
             await Handler(Client, Tag);
         }
     }
+
+
 
     public class WebSocketJsonTester<Token> : ITester
          where Token : new()
@@ -77,7 +97,7 @@ namespace NetBenchmark
 
         public async Task Execute()
         {
-            Client.Connect();
+            await Client.Connect();
             Client.Client.SocketProcessHandler = Runner;
             await Handler(Client, Tag);
         }

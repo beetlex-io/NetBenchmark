@@ -13,6 +13,8 @@ namespace NetBenchmark
 
         public string Name { get; set; }
 
+        private long mQuantity { get; set; }
+
         private long mValue;
 
         private long mLastValue;
@@ -47,14 +49,19 @@ namespace NetBenchmark
                 double stime = BeetleX.TimeWatch.GetTotalSeconds();
                 double time = stime - mLastTime;
                 var svalue = mValue - mLastValue;
-
+                mQuantity++;
                 mRps = (long)(svalue / time);
                 mLastValue = Value;
                 mLastTime = stime;
+
                 if (Rps > Max)
                     Max = Rps;
-                if (Rps < Min || Min == 0)
-                    Min = Rps;
+                if (mQuantity > 3)
+                {
+                    if (Rps < Min || Min == 0)
+                        Min = Rps;
+                }
+                
                 mCount++;
                 mRpsCount += mRps;
                 Avg = mRpsCount / mCount;

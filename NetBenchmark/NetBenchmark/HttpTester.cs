@@ -13,7 +13,7 @@ namespace NetBenchmark
 
         public HttpTester(Uri uri)
         {
-            mHttpHost = new BeetleX.Http.Clients.HttpHost(uri);
+            mHttpHost = HttpHost.GetHttpHost(uri);
         }
 
         private BeetleX.Http.Clients.HttpHost mHttpHost;

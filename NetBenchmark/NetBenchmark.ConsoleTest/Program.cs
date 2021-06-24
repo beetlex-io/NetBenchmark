@@ -6,49 +6,41 @@ using System.Threading.Tasks;
 
 namespace NetBenchmark.ConsoleTest
 {
-    //websocket
-    //var runer = Benchmark.WebsocketText<Program>(new Uri("ws://192.168.2.19:8080"), 100,
-    //    async (ws, token) =>
-    //    {
-    //        ws.TimeOut = 1000 * 5;
-    //        ws.Send("{\"url\":\"/json\"}");
-    //        var result = await ws.Receive();
-    //    });
-    //tcp
-    //var runer = Benchmark.Tcp<StringPacket, Program>("192.168.2.19", 9090, 200,
-    //    async (tcp, token) =>
-    //    {
-    //        tcp.Send("Test");
-    //        await tcp.Receive();
-    //    }
-    //);
-    //http
-    //var runer = Benchmark.Http<Program>(new Uri("http://192.168.2.19:5000"), 100,
-    //    async (http, token) =>
-    //    {
-    //        await http.Get("/api/values");
-    //    });
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            //var runer = Benchmark.WebsocketText<Program>(new Uri("ws://192.168.2.19:80"), 100,
-            //    async (ws, token) =>
-            //    {
-            //        ws.TimeOut = 1000 * 5;
-            //        ws.Send("henryfan");
-            //        var result = await ws.Receive();
-            //    });
-            //runer.Run();
-            var runer = Benchmark.Http<Program>(new Uri("http://192.168.2.19:8089"), 100,
-                async (http, token) =>
-                {
-                    await http.Get("/orders?count=10");
-                });
-            runer.Run();
-            runer.Print();
-        }
+//websocket
+//var runer = Benchmark.WebsocketText<Program>(new Uri("ws://192.168.2.19:8080"), 100,
+//    async (ws, token) =>
+//    {
+//        ws.TimeOut = 1000 * 5;
+//        ws.Send("{\"url\":\"/json\"}");
+//        var result = await ws.Receive();
+//    });
+//tcp
+//var runer = Benchmark.Tcp<StringPacket, Program>("192.168.2.19", 9090, 200,
+//    async (tcp, token) =>
+//    {
+//        tcp.Send("Test");
+//        await tcp.Receive();
+//    }
+//);
+//http
+//var runer = Benchmark.Http<Program>(new Uri("http://192.168.2.19:5000"), 100,
+//    async (http, token) =>
+//    {
+//        await http.Get("/api/values");
+//    });
+class Program
+{
+    static void Main(string[] args)
+    {          
+        var runer = Benchmark.Http<Program>(new Uri("http://192.168.2.19:8080"), 100,
+            async (http, token) =>
+            {
+                await http.Get("/customers?count=40");
+            });
+        runer.Run();
+        runer.Print();
     }
+}
 
     public class StringPacket : BeetleX.Packets.FixeHeaderClientPacket
     {

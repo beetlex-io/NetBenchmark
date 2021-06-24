@@ -19,9 +19,9 @@ namespace NetBenchmark
 
         public Counter Error { get; private set; } = new Counter("Error");
 
-        public Counter ReceiveBytes { get; private set; } = new Counter("Network  Read");
+        public Counter ReceiveBytes { get; private set; } = new Counter("Read");
 
-        public Counter SendBytes { get; private set; } = new Counter("Network Write");
+        public Counter SendBytes { get; private set; } = new Counter("Write");
 
         public bool Status { get; set; } = false;
 
@@ -99,26 +99,21 @@ namespace NetBenchmark
             while (true)
             {
                 sb.Clear();
-                string value = "NetBenchmark";
+                string value = "TCP/HTTP/WEBSOCKET Benchmark";
                 Console.CursorTop = 0;
                 Console.CursorLeft = 0;
 
-                sb.AppendLine("-".PadRight(WIDTH, '-'));
+                sb.AppendLine("");
                 int span = WIDTH / 2 - value.Length / 2;
                 sb.AppendLine("".PadLeft(span) + value);
 
-                value = "Copyright © beetlex.io 2019-2020 email:henryfan@msn.com";
-                span = WIDTH / 2 - value.Length / 2;
-                sb.AppendLine("".PadLeft(span) + value);
 
+                sb.AppendLine("");
 
                 value = Name;
                 span = 70 / 2 - value.Length / 2;
                 sb.AppendLine("".PadLeft(span) + value);
 
-                value = $"{Stopwatch.Elapsed}";
-                span = WIDTH / 2 - value.Length / 2;
-                sb.AppendLine("".PadLeft(span) + value);
 
                 sb.AppendLine("-".PadRight(WIDTH, '-'));
                 sb.Append("|");
@@ -141,11 +136,34 @@ namespace NetBenchmark
                 sb.AppendLine("-".PadRight(WIDTH, '-'));
                 Success.Print(sb);
                 Error.Print(sb);
+                value = "Network bandwidth";
+                span = WIDTH / 2 - value.Length / 2;
+                sb.Append("".PadLeft(span, '-') + value)
+                    .AppendLine("".PadRight(span, '-'));
+
                 ReceiveBytes.Print(sb, 1024, "(KB)");
                 SendBytes.Print(sb, 1024, "(KB)");
-                sb.AppendLine("-".PadRight(WIDTH, '-'));
+
+
+                value = "Response latency";
+                span = WIDTH / 2 - value.Length / 2;
+                sb.Append("".PadLeft(span, '-') + value)
+                    .AppendLine("".PadRight(span + 1, '-'));
+
                 mTimesStatistics.Print(sb);
                 sb.AppendLine("-".PadRight(WIDTH, '-'));
+
+                value = $"Run time:{Stopwatch.Elapsed}";
+                span = WIDTH / 2 - value.Length / 2;
+                sb.Append("|");
+                sb.AppendLine("".PadLeft(span) + value + "".PadRight(span-2) + "|");
+                ;
+                sb.AppendLine("-".PadRight(WIDTH, '-'));
+
+                value = "Copyright © beetlex.io 2019-2021 email:henryfan@msn.com";
+                span = WIDTH / 2 - value.Length / 2;
+                sb.AppendLine("".PadLeft(span) + value);
+
                 Console.WriteLine(sb);
                 System.Threading.Thread.Sleep(1000);
             }
