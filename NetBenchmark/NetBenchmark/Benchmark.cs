@@ -29,7 +29,7 @@ namespace NetBenchmark
         public static Runner Http<Token>(Uri host, int connections, Func<IHttpHandler, Token, Task> handler)
             where Token : new()
         {
-            BeetleX.Http.Clients.HttpClientPoolFactory.SetPoolInfo(host, connections + 10, 5000);
+            BeetleX.Http.Clients.HttpClientPoolFactory.SetPoolInfo(host.ToString(), connections + 10, 5000);
             Runner runer = new Runner();
             runer.Name = $"HTTP [{host}][Connections:{connections:###,###,###}]";
             for (int i = 0; i < connections; i++)

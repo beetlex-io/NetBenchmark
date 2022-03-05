@@ -11,7 +11,7 @@ namespace NetBenchmark
     {
         public WebSocketFrameTester(Uri uri)
         {
-            Client = new WSClient(uri);
+            Client = new WSClient(uri.ToString());
         }
 
         public Token Tag { get; set; } = new Token();
@@ -33,19 +33,16 @@ namespace NetBenchmark
 
     public class TestWSClient : WSClient
     {
-        public TestWSClient(Uri uri) : base(uri) { }
+        public TestWSClient(Uri uri) : base(uri.ToString()) { }
 
-        public override byte[] GetFrameDataBuffer(int length)
+        public override byte[] GetReadFrameDataBuffer(int length)
         {
-            return base.GetFrameDataBuffer(length);
+            return base.GetReadFrameDataBuffer(length);
         }
-
-        public override void FreeFrameDataBuffer(byte[] data)
+        public override void FreeReadFrameDataBuffer(byte[] data)
         {
-            base.FreeFrameDataBuffer(data);
+            base.FreeReadFrameDataBuffer(data);
         }
-
-        
     }
 
 
@@ -56,7 +53,7 @@ namespace NetBenchmark
 
         public WebSocketTextTester(Uri uri)
         {
-            Client = new TextClient(uri);
+            Client = new TextClient(uri.ToString());
         }
 
         public Token Tag { get; set; } = new Token();
@@ -83,7 +80,7 @@ namespace NetBenchmark
     {
         public WebSocketJsonTester(Uri uri)
         {
-            Client = new JsonClient(uri);
+            Client = new JsonClient(uri.ToString());
         }
 
         public Token Tag { get; set; } = new Token();

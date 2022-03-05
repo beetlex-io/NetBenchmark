@@ -32,7 +32,7 @@ class Program
 {
     static void Main(string[] args)
     {          
-        var runer = Benchmark.Http<Program>(new Uri("http://192.168.2.19:8080"), 100,
+        var runer = Benchmark.Http<Program>(new Uri("http://192.168.2.19"), 100,
             async (http, token) =>
             {
                 await http.Get("/customers?count=40");

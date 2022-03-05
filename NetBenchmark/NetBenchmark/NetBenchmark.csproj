@@ -3,25 +3,25 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>henryfan</Authors>
-    <Company>beetlex.io</Company>
-    <Copyright>Copyright © beetlex.io 2019-2020 email:henryfan@msn.com</Copyright>
+    <Company>beetlex-io.com</Company>
+    <Copyright>Copyright © beetlex-io.com 2019-2022 email:henryfan@msn.com</Copyright>
     <Description>tcp http and websocket benchmark components</Description>
     <PackageLicenseUrl>https://github.com/IKende/NetBenchmark/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/IKende/NetBenchmark</PackageProjectUrl>
-    <Version>1</Version>
+    <PackageProjectUrl>https://github.com/beetlex-io/NetBenchmark</PackageProjectUrl>
+    <Version>1.2</Version>
     <PackageId>BeetleX.NetBenchmark</PackageId>
     <PackageIconUrl></PackageIconUrl>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
     <PackageIcon>beetlex200.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BeetleX.Http.Clients" Version="1.6.5.2" />
+    <PackageReference Include="BeetleX.Http.Clients" Version="2.2.2.1802" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\..\..\beetlex200.png">
+    <None Include="..\..\..\beetlex200.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
